@@ -6,6 +6,10 @@ var serveStatic = require('serve-static');
 
 app = express();
 app.use(serveStatic(__dirname + "/dist"));
+app.get('/', express.static('dist'));
+app.get('/health-check', function(req, res) {
+ res.send('ok');
+});
 
 var port = process.env.PORT || 5000;
 app.listen(port);
